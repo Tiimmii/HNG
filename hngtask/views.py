@@ -9,13 +9,13 @@ from .serializers import PointSerializer
 @csrf_exempt
 def point_list(request):
   header = {"Access-Control-Allow-Origin":"*"}
-  point = Point.objects.all()
-  if point.count()<1:
-    Point.objects.create(slackUsername='Timmi', backend=True, age=18, bio="I'm Oluwole Daniel an undergraduate currently studying Bsc computer science and a django backend developer")
-
-  if request.method == 'GET':
-      people = Point.objects.all()
-      serializer = PointSerializer(people, many=True)
-      return JsonResponse(serializer.data, safe=False, headers=header)
+  data = {
+    "slackUsername":"Timmi",
+    "backend":True,
+    "age":18,
+    "bio":"I'm oluwole daniel a passionate backend deveolper",
+    
+  }
+  return JsonResponse(data, safe=False, headers=header)
 
 
